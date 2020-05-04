@@ -1,10 +1,10 @@
 import logging
-import os
 
 from telethon import TelegramClient, events
 from telethon.tl import types
 
 import config
+from utils import mkdirs
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('telethon').setLevel(level=logging.WARNING)
@@ -17,15 +17,6 @@ video_dir = config.video_dir
 video_size_limit = config.video_size_limit  # type int. eg. 26214400 that is less than 25MB
 
 client = TelegramClient('telemedia', api_id, api_hash)
-
-
-def mkdirs(dir, chats):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-    for chat in chats:
-        if not os.path.exists(dir + chat):
-            os.makedirs(dir + chat)
-
 
 mkdirs(photo_dir, chats)
 mkdirs(video_dir, chats)
