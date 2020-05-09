@@ -1,9 +1,15 @@
 import os
 
 
-def mkdirs(dirs, chats):
+def create_path(dirs, chats):
     if not os.path.exists(dirs):
         os.makedirs(dirs)
     for chat in chats:
-        if not os.path.exists(dirs + chat):
-            os.makedirs(dirs + chat)
+        path = os.path.join(dirs, chat)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+
+def create_folder(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
